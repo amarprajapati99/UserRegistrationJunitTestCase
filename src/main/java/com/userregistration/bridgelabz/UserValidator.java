@@ -11,8 +11,9 @@ public class UserValidator {
     Scanner scanner = new Scanner(System.in);
     private String firstName;
     private String lastName;
-    private  String emailId;
+    private String emailId;
     private String mobileNumber;
+    private String password;
 
     public String getFirstName() {
         System.out.println("enter your first name");
@@ -82,7 +83,7 @@ public class UserValidator {
     this is the condition for user if the user follow the condition
     the valid mobile number other wise invalid mobile number.
      */
-    public void validateMobileNumber(String mobileNumber) {
+    public boolean validateMobileNumber(String mobileNumber) {
         Pattern pattern = Pattern.compile("^((\\+)?(\\d{2}[-]))?(\\d{10}){1}?$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(mobileNumber);
         boolean matches = matcher.find();
@@ -91,6 +92,27 @@ public class UserValidator {
         else
             System.out.println("Invalid mobile number");
 
+        return matches;
+    }
+    /*@Description:- take password from user
+     */
+    public String getPassword() {
+        System.out.println("enter password");
+        password = scanner.next();
+        return password;
+    }
+
+    /*@Description:- password must be of length at least 8 characters or more
+    * */
+    public boolean validatePassword(String password) {
+        Pattern pattern = Pattern.compile("[A-Z0-9a-z$%&*@!#]{8,}");
+        Matcher matcher = pattern.matcher(password);
+        boolean matches = matcher.find();
+        if (matches)
+            System.out.println("your password is valid");
+        else
+            System.out.println("Invalid password");
+        return matches;
     }
 
     public static void main(String[] args) {
@@ -103,6 +125,9 @@ public class UserValidator {
         userValidator.validateEmail(emaiId);
         String mobileNumber = userValidator.getMobileNumber();
         userValidator.validateMobileNumber(mobileNumber);
+        String password = userValidator.getPassword();
+        userValidator.validatePassword(password);
+
 
     }
 }

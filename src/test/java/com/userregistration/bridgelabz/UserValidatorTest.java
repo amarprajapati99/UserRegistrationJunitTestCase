@@ -25,7 +25,13 @@ public class UserValidatorTest {
     }
     @Test
     public void givenMobileNumber_whenProper_shouldReturnTrue() {
-        boolean result = userValidator.validateEmail("+91 5842484762");
+        boolean result = userValidator.validateMobileNumber("+91 5842484762");
         Assert.assertEquals(result, true);
     }
+    @Test
+    public void givenPassword_whenProper_shouldReturnTrue() {
+        boolean result = userValidator.validatePassword("amxsserf");
+        Assert.assertEquals(result, true);
+    }
+
 }
