@@ -12,6 +12,7 @@ public class UserValidator {
     private String firstName;
     private String lastName;
     private  String emailId;
+    private String mobileNumber;
 
     public String getFirstName() {
         System.out.println("enter your first name");
@@ -68,6 +69,29 @@ public class UserValidator {
             System.out.println("Email id is not  valid");
         return matches;
     }
+    /*
+      user need to enter mobile number and must follow the condition.
+     */
+    public String getMobileNumber() {
+        scanner.nextLine();
+        System.out.println("enter your mobile number");
+        mobileNumber = scanner.nextLine();
+        return mobileNumber;
+    }
+    /*
+    this is the condition for user if the user follow the condition
+    the valid mobile number other wise invalid mobile number.
+     */
+    public void validateMobileNumber(String mobileNumber) {
+        Pattern pattern = Pattern.compile("^((\\+)?(\\d{2}[-]))?(\\d{10}){1}?$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(mobileNumber);
+        boolean matches = matcher.find();
+        if (matches)
+            System.out.println("your mobile number is valid");
+        else
+            System.out.println("Invalid mobile number");
+
+    }
 
     public static void main(String[] args) {
         UserValidator userValidator = new UserValidator();
@@ -77,6 +101,8 @@ public class UserValidator {
         userValidator.validateName(lastName);
         String emaiId = userValidator.getEmailId();
         userValidator.validateEmail(emaiId);
+        String mobileNumber = userValidator.getMobileNumber();
+        userValidator.validateMobileNumber(mobileNumber);
 
     }
 }
