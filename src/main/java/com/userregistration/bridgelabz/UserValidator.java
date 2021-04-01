@@ -105,7 +105,7 @@ public class UserValidator {
     /*@Description:- password must be of length at least 8 characters or more
     * */
     public boolean validatePassword(String password) {
-        Pattern pattern = Pattern.compile("[A-Z0-9a-z$%&*@!#]{8,}");
+        Pattern pattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(password);
         boolean matches = matcher.find();
         if (matches)
