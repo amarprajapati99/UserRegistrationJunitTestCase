@@ -25,7 +25,7 @@ public class UserValidator {
         lastName = scanner.nextLine();
         return lastName;
     }
-    public void validateName(String name) {
+    public boolean validateFirstName(String name) {
         Pattern pattern = Pattern.compile("[A-Z]{1}[a-z]{2}+");
         Matcher matcher = pattern.matcher(name);
         boolean matches = matcher.find();
@@ -33,6 +33,7 @@ public class UserValidator {
             System.out.println("your name is valid");
         else
             System.out.println("invalid name");
+        return matches;
     }
     /* @Description User enter a valid last name.
      */
@@ -79,7 +80,7 @@ public class UserValidator {
         mobileNumber = scanner.nextLine();
         return mobileNumber;
     }
-    /*
+    /* @Description
     this is the condition for user if the user follow the condition
     the valid mobile number other wise invalid mobile number.
      */
@@ -105,7 +106,7 @@ public class UserValidator {
     /*@Description:- password must be of length at least 8 characters or more
     * */
     public boolean validatePassword(String password) {
-        Pattern pattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("[A-Z0-9a-z$%&*@!#]{8,}",Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(password);
         boolean matches = matcher.find();
         if (matches)
@@ -113,14 +114,15 @@ public class UserValidator {
         else
             System.out.println("Invalid password");
         return matches;
+
     }
 
     public static void main(String[] args) {
         UserValidator userValidator = new UserValidator();
         String firstName = userValidator.getFirstName();
-        userValidator.validateName(firstName);
+        userValidator.validateFirstName(firstName);
         String lastName = userValidator.getLastName();
-        userValidator.validateName(lastName);
+        userValidator.validateLastName(lastName);
         String emaiId = userValidator.getEmailId();
         userValidator.validateEmail(emaiId);
         String mobileNumber = userValidator.getMobileNumber();
