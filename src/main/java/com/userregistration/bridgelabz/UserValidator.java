@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 /* @Description- user enter first name and last name using regex condition.
 * first latter must be start with cap letter.
+* Added mobile number with country code.
+* Added password one numberic and one special character and must me one capital letter   
  */
 public class UserValidator {
     Scanner scanner = new Scanner(System.in);
@@ -119,22 +121,6 @@ public class UserValidator {
         else
             System.out.println("Invalid password");
         return matches;
-
-    }
-
-    public static void main(String[] args) {
-        UserValidator userValidator = new UserValidator();
-        String firstName = userValidator.getFirstName();
-        userValidator.validateName(firstName);
-        String lastName = userValidator.getLastName();
-        userValidator.validateLName(lastName);
-        String emaiId = userValidator.getEmailId();
-        userValidator.validateEmail(emaiId);
-        String mobileNumber = userValidator.getMobileNumber();
-        userValidator.validateNumber(mobileNumber);
-        String password = userValidator.getPassword();
-        userValidator.validatePass(password);
-
 
     }
 }
