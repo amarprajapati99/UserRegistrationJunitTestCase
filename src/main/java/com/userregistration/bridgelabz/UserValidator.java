@@ -20,14 +20,9 @@ public class UserValidator {
         firstName = scanner.nextLine();
         return firstName;
     }
-    public String getLastName() {
-        System.out.println("enter your last name");
-        lastName = scanner.nextLine();
-        return lastName;
-    }
-    public boolean validateFirstName(String name) {
+    public boolean validateName(String firstName) {
         Pattern pattern = Pattern.compile("[A-Z]{1}[a-z]{2}+");
-        Matcher matcher = pattern.matcher(name);
+        Matcher matcher = pattern.matcher(firstName);
         boolean matches = matcher.find();
         if (matches)
             System.out.println("your name is valid");
@@ -35,9 +30,15 @@ public class UserValidator {
             System.out.println("invalid name");
         return matches;
     }
+    public String getLastName() {
+        System.out.println("enter your last name");
+        lastName = scanner.nextLine();
+        return lastName;
+    }
+
     /* @Description User enter a valid last name.
      */
-    public boolean validateLastName(String lastName) {
+    public boolean validateLName(String lastName) {
         Pattern pattern = Pattern.compile("[A-Z]{1}[a-z]{2}+");
         Matcher matcher = pattern.matcher(lastName);
         boolean matches = matcher.find();
@@ -84,7 +85,7 @@ public class UserValidator {
     this is the condition for user if the user follow the condition
     the valid mobile number other wise invalid mobile number.
      */
-    public boolean validateMobileNumber(String mobileNumber) {
+    public boolean validateNumber(String mobileNumber) {
         Pattern pattern = Pattern.compile("^((\\+)?(\\d{2}[-]))?(\\d{10}){1}?$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(mobileNumber);
         boolean matches = matcher.find();
@@ -107,7 +108,7 @@ public class UserValidator {
     password contain at least one upper case.
     passeord conitan atleast one numeric number.
     * */
-    public boolean validatePassword(String password) {
+    public boolean validatePass(String password) {
 
         Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])((?=.+[!$%^&*(),.:@#^]){1}).{8,}$",Pattern.CASE_INSENSITIVE);
 
@@ -124,15 +125,15 @@ public class UserValidator {
     public static void main(String[] args) {
         UserValidator userValidator = new UserValidator();
         String firstName = userValidator.getFirstName();
-        userValidator.validateFirstName(firstName);
+        userValidator.validateName(firstName);
         String lastName = userValidator.getLastName();
-        userValidator.validateLastName(lastName);
+        userValidator.validateLName(lastName);
         String emaiId = userValidator.getEmailId();
         userValidator.validateEmail(emaiId);
         String mobileNumber = userValidator.getMobileNumber();
-        userValidator.validateMobileNumber(mobileNumber);
+        userValidator.validateNumber(mobileNumber);
         String password = userValidator.getPassword();
-        userValidator.validatePassword(password);
+        userValidator.validatePass(password);
 
 
     }
