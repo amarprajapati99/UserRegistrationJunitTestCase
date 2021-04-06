@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 /* @Description- user enter first name and last name using regex condition.
 * first latter must be start with cap letter.
 * Added mobile number with country code.
-* Added password one numberic and one special character and must me one capital letter   
+*
  */
 public class UserValidator {
     Scanner scanner = new Scanner(System.in);
