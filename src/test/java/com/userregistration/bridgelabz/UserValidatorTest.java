@@ -7,17 +7,17 @@ public class UserValidatorTest {
     UserValidator userValidatorTest = new UserValidator();
 
     @Test
-    public void givenFirstName_whenProper_shouldReturnTrue() {
+    public void givenFirstName_whenProper_shouldReturnTrue() throws InvalidUserDetails {
         boolean result = userValidatorTest.validateName("Jay");
         Assert.assertEquals(true,result);}
 
     @org.junit.jupiter.api.Test
-    public void givenFirstName_whenProper_shouldReturnFalse() {
+    public void givenFirstName_whenProper_shouldReturnFalse() throws InvalidUserDetails {
         boolean result = userValidatorTest.validateName("jay");
         Assert.assertEquals(false,result);}
     @org.junit.jupiter.api.Test
 
-    public void givenFirstName_whenProperShouldReturnFalse() {
+    public void givenFirstName_whenProperShouldReturnFalse() throws InvalidUserDetails {
         boolean result = userValidatorTest.validateName("Jo");
         Assert.assertEquals(false,result);}
     @org.junit.jupiter.api.Test
@@ -32,27 +32,27 @@ public class UserValidatorTest {
         Assert.assertEquals(false,result);}
     @org.junit.jupiter.api.Test
 
-    public void givenMobileNumber_whenProper_shouldReturnTrue() {
+    public void givenMobileNumber_whenProper_shouldReturnTrue() throws InvalidUserDetails {
         boolean result = userValidatorTest.validateNumber("+91 1235468844");
         Assert.assertEquals(true, result);}
     @org.junit.jupiter.api.Test
 
-    public void givenMobileNumber_whenProper_shouldReturnFalse() {
+    public void givenMobileNumber_whenProper_shouldReturnFalse() throws InvalidUserDetails {
         boolean result = userValidatorTest.validateNumber("+91-1235468844");
         Assert.assertEquals(false, result);}
     @org.junit.jupiter.api.Test
 
-    public void givenPassword_whenProper_shouldReturnTrue() {
+    public void givenPassword_whenProper_shouldReturnTrue() throws InvalidUserDetails {
         boolean result = userValidatorTest.validatePass("Ja@xyzzss1");
         Assert.assertEquals(true, result);}
     @org.junit.jupiter.api.Test
 
-    public void givenEmailId_ValidShould_ReturnTrue() {
+    public void givenEmailId_ValidShould_ReturnTrue() throws InvalidUserDetails {
         boolean result = userValidatorTest.validateEmail("abc100@gmail.com.");
         Assert.assertEquals(true, result);
     }
     @org.junit.jupiter.api.Test
-    public void givenEmailId_ValidShould_ReturnFalse() {
+    public void givenEmailId_ValidShould_ReturnFalse() throws InvalidUserDetails {
         boolean result = userValidatorTest.validateEmail("abc-100.@.gmail.com");
         Assert.assertEquals(false, result);
     }
