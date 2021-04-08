@@ -30,14 +30,6 @@ import java.util.Collection;
                {true, "abc-100@abc.net"},
                {true, "abc.100@abc.com.au"},
                {true, "abc@1.com"},
-               {true, "abc@gmail.com.com"},
-               {true, "abc+100@gmail.com"},
-               {false, "abcgmail.com"},
-               {false, "abc@.com.my"},
-               {false, "abc.100@gmail.a"},
-               {false, "abc123@.com"},
-               {false, "abc123@.com.com"},
-               {false, ".abc@abc.com"},
             });
   }
   @Test
