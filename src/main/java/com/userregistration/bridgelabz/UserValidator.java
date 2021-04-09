@@ -14,6 +14,11 @@ public class UserValidator {
     private String emailId;
     private String mobileNumber;
     private String password;
+    Pattern namePattern = Pattern.compile("^[A-Z][a-z]{2,}$");
+    Pattern emailPattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]{2,6}){0,1}(\\.[A-Za-z]{2,3})$", Pattern.CASE_INSENSITIVE);
+    Pattern mobileNumberPattern = Pattern.compile("^[91]+[\\s]+[1-9]{1}+[0-9]{9}$", Pattern.CASE_INSENSITIVE);
+    Pattern passwordPattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])((?=.+[!$%^&*(),.:@#^]){1}).{8,}$");
+
 
     public String getFirstName() {
         System.out.println("enter your first name");
@@ -155,4 +160,4 @@ public class UserValidator {
                     InvalidUserDetails.ExceptionType.enterEmpty, "Please give some input");
         }
     }
-}
+
