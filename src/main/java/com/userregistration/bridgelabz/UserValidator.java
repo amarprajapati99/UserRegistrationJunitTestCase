@@ -7,6 +7,10 @@ import java.util.regex.Pattern;
 /* @Description- user enter first name and last name using regex condition.
 * first latter must be start with cap letter.
 * Added mobile number with country code.*/
+@FunctionalInterface
+interface Validationfunction {
+    boolean checkValid(String input);
+}
 public class UserValidator {
     Scanner scanner = new Scanner(System.in);
     private String firstName;
@@ -30,13 +34,13 @@ public class UserValidator {
         try {
             checkInputIsEmpty(firstName);
             checkNameIsInDigits(firstName);
-            Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
-            Matcher matcher = pattern.matcher(firstName);
-            boolean matches = matcher.find();
-            return matches;
+            Validationfunction nameValidation = n -> {
+                return namePattern.matcher(n).find();
+            };
+            return nameValidation.checkValid(firstName);
         } catch (NullPointerException e) {
-            throw new InvalidUserDetails(
-                    InvalidUserDetails.ExceptionType.enterNull, "Please enter a valid input");
+            throw new UserRegistrationInvalidDetails(
+                    UserRegistrationInvalidDetails.ExceptionType.enterNull, "Please enter a valid input");
         }
     }
 
@@ -83,13 +87,13 @@ public class UserValidator {
     public boolean validateEmail(String emailId) throws InvalidUserDetails {
         try {
             checkInputIsEmpty(emailId);
-            Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]{2,6}){0,1}(\\.[A-Za-z]{2,3})$", Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(emailId);
-            boolean matches = matcher.find();
-            return matches;
+            Validationfunction emailValidation = n -> {
+                return emailPattern.matcher(n).find();
+            };
+            return emailValidation.checkValid(emailId);
         } catch (NullPointerException e) {
-            throw new InvalidUserDetails(
-                    InvalidUserDetails.ExceptionType.enterNull, "Please enter a valid email");
+            throw new UserRegistrationInvalidDetails(
+                    UserRegistrationInvalidDetails.ExceptionType.enterNull, "Please enter a valid email");
         }
     }
 
@@ -108,16 +112,17 @@ public class UserValidator {
     the valid mobile number other wise invalid mobile number.
      */
     public boolean validateNumber(String mobileNumber) throws InvalidUserDetails {
-        try {
+         try {
             checkInputIsEmpty(mobileNumber);
             checkMobileNumberIsInLetters(mobileNumber);
-            Pattern pattern = Pattern.compile("^[91]+[\\s]+[1-9]{1}+[0-9]{9}$", Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(mobileNumber);
-            boolean matches = matcher.find();
-            return matches;
+            Validationfunction mobileNumberValidation = n ->
+            {
+                return mobileNumberPattern.matcher(n).find();
+            };
+            return mobileNumberValidation.checkValid(mobileNumber);
         } catch (NullPointerException e) {
-            throw new InvalidUserDetails(
-                    InvalidUserDetails.ExceptionType.enterNull, "Please enter a valid mobile number");
+            throw new UserRegistrationInvalidDetails(
+                    UserRegistrationInvalidDetails.ExceptionType.enterNull, "Please enter a valid mobile number");
         }
     }
 
@@ -141,16 +146,15 @@ public class UserValidator {
     passeord conitan atleast one numeric number.
     * */
     public boolean validatePass(String password) throws  InvalidUserDetails{
-
-        try {
+       try {
             checkInputIsEmpty(password);
-            Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])((?=.+[!$%^&*(),.:@#^]){1}).{8,}$");
-            Matcher matcher = pattern.matcher(password);
-            boolean matches = matcher.find();
-            return matches;
+            Validationfunction passwordValidation = n -> {
+                return passwordPattern.matcher(n).find();
+            };
+            return passwordValidation.checkValid(password);
         } catch (NullPointerException e) {
-            throw new InvalidUserDetails(
-                    InvalidUserDetails.ExceptionType.enterNull, "Please enter a valid password");
+            throw new UserRegistrationInvalidDetails(
+                    UserRegistrationInvalidDetails.ExceptionType.enterNull, "Please enter a valid password");
         }
     }
 
